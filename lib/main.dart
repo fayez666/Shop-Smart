@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopsmart_users/consts/app_colors.dart';
 import 'package:shopsmart_users/consts/theme.dart';
 import 'package:shopsmart_users/providers/them_provider.dart';
-
-import 'screens/home_screen.dart';
+import 'package:shopsmart_users/root_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
               context: context,
               isDarkMode: themeProvider.isDarkMode,
             ),
-            home: const HomeScreen(),
+            home: const RootScreen(),
           );
         }
       ),
