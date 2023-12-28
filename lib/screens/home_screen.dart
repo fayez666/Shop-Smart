@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopsmart_users/providers/them_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themProvider =
+                  Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -16,9 +20,12 @@ class HomeScreen extends StatelessWidget {
               )),
           ElevatedButton(onPressed: () {}, child: const Text('Hello Wworld')),
           SwitchListTile(
-            value: false,
-            onChanged: (value) {},
-            title: const Text('Switch Theme'),
+            value: themProvider.isDarkMode,
+            onChanged: (value) {
+              
+              themProvider.setDarkTheme(isDarkMode: value);
+            },
+            title:  Text(themProvider.isDarkMode ? 'Dark Theme' : 'Light Theme'),
           ),
         ],
       ),

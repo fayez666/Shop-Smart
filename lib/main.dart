@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopsmart_users/consts/app_colors.dart';
+import 'package:shopsmart_users/consts/theme.dart';
+import 'package:shopsmart_users/providers/them_provider.dart';
 
 import 'screens/home_screen.dart';
 
@@ -12,15 +15,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColor.lightScaffoldBackgroundColor,
-        primarySwatch: Colors.blue,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider( create: (context) => ThemeProvider())],
+      child: Consumer<ThemeProvider>(
+        builder: (context,themeProvider,child) {
+          return MaterialApp(
+            title: 'ShopSmart Users',
+            theme: Styles.themeData(
+              context: context,
+              isDarkMode: themeProvider.isDarkMode,
+            ),
+            home: const HomeScreen(),
+          );
+        }
       ),
-      home: const HomeScreen(),
     );
   }
 }
