@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_users/providers/them_provider.dart';
 import 'package:shopsmart_users/services/assets_manager.dart';
+import 'package:shopsmart_users/widgets/custom_app_name.dart';
 import 'package:shopsmart_users/widgets/custom_list_tile.dart';
 import 'package:shopsmart_users/widgets/subtitle_text.dart';
 import 'package:shopsmart_users/widgets/title_text.dart';
@@ -15,8 +16,11 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: Image.asset(AssetsManager.shoppingCart),
-        title: const Text('Profile Screen'),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(AssetsManager.shoppingCart),
+        ),
+        title: const CustomAppName(),
       ),
       body: SingleChildScrollView(
         child: Padding(
